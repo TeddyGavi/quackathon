@@ -2,7 +2,8 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Favorites from "./components/Favorites";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+
 
 export default function App() {
   const [catArray, setCatArray] = useState([]);
@@ -10,10 +11,12 @@ export default function App() {
   useEffect(() => {
     async function getImages() {
       try {
-        const response = await fetch("https://api.api-ninjas.com/v1/cats", {
+        const response = await fetch("https://api.api-ninjas.com/v1/cats?max_weight=500?offset=10&limit=5", {
           method: "GET",
-          headers: { "X-Api-Key": "OqfR/xiDH5FzbG4Dsj8WVA==Y1LlPslook0082vG" },
+          headers: { "x-api-key": process.env.REACT_APP_CAT_API_KEY,  },
           contentType: "application/json",
+          mode: "no-cors",
+          
         });
         const catJSON = await response.json();
         setCatArray(catJSON);
