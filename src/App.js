@@ -11,11 +11,10 @@ export default function App() {
   useEffect(() => {
     async function getImages() {
       try {
-        const response = await fetch("https://api.api-ninjas.com/v1/cats?max_weight=500?offset=10&limit=5", {
+        const response = await fetch("https://api.api-ninjas.com/v1/cats?min_weight=1", {
           method: "GET",
           headers: { "x-api-key": process.env.REACT_APP_CAT_API_KEY,  },
           contentType: "application/json",
-          mode: "no-cors",
           
         });
         const catJSON = await response.json();
